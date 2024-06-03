@@ -5,11 +5,11 @@ import "./layout.css"
 const Layout=()=>{
 
     return (<>
-    <div className={"BaseLayout"}>
-    <Header />
-    <div className="Outlet">
-        <Outlet />
-    </div>
+    <div className="h-full w-full p-4 flex">
+        <Header />
+        <div className="w-5/6">
+            <Outlet />
+        </div>
     </div>
 
     </>)

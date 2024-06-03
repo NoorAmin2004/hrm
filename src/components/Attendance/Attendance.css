@@ -1,32 +1,4 @@
-.sheet-container{
-    width: 100%;
-    font-family: "Urbanist", sans-serif !important;
-   
-}
-.mini-container-attendance{
-    background-color: white;
-    margin-top: 20px;
-    border-radius: 10px;
-}
-#datatable-container-user{
-    width: 100%;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-top: 30px;
-    background-color: #ffffff;
-}
-.sheet-container > h1{
-    width: 100%;
-    background-color:#010115;
-    color: white;
-    border-radius: 10px;
-    font-family: "Poppins", sans-serif;
-    letter-spacing: 1px;
-    font-weight: 500;
-    font-size: 1.8rem;
-    
-}
-/* custom-styles.css */
+/*
 #datatable-container-user .p-datatable {
     background-color: #ffffff;
     color: rgb(0, 0, 0);
@@ -43,7 +15,6 @@
     background-color: #ffffff;
     color: #034F75;
     font-size: 1.3rem;
-    /* background-color:  !important; */
     font-weight: bolder !important;
 
 
@@ -69,7 +40,6 @@
 }
 
 .date-filters{
-    /* border: 2px solid red; */
     padding: 30px 0px 0px 20px;
     display: flex;
     gap: 2rem;
@@ -85,7 +55,6 @@
    border: none;
    border-bottom: 1px solid rgb(14, 14, 14);
    padding: 0px 10px;
-   /* border-radius: 5px; */
 
     
 }
@@ -95,4 +64,4 @@
         padding: 0px 30px;
         
     }
-}
+} */

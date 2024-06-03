@@ -1,11 +1,6 @@
-.sheet-container{
+/* .sheet-container{
     width: 80%;
-    /* border: 10px solid red; */
-    /* font-family: "Urbanist", sans-serif !important; */
     font-family: 'Clash Display', sans-serif;
-   
-    /* margin: auto; */
-    /* padding-bottom: 30px; */
 }
 #datatable-container-user{
     width: 100%;
@@ -36,7 +31,7 @@
     font-family: 'Clash Display', sans-serif;
     
 }
-/* custom-styles.css */
+
 #datatable-container-user .p-datatable {
     background-color: #ffffff;
     color: rgb(0, 0, 0);
@@ -67,7 +62,6 @@
 }
 
 #datatable-container-user .p-paginator {
-    /* background-color: rgb(98, 97, 97) !important; */
     color: rgb(0, 0, 0);
    
     padding: 10px 0px;
@@ -80,4 +74,4 @@
         padding: 0px 30px;
         
     }
-}
+} */

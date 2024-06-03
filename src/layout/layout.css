@@ -1,24 +1,23 @@
-.BaseLayout{
-    height: 100% !important;
+/* .BaseLayout{
+    height: 100%;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 6fr;
     grid-template-rows: 1fr;
     padding:25px 30px;
     
-}
+} */
 .hi{
     width: fit-content;
 }
-.Outlet{
-    /* margin:0 20px; */
+/* .Outlet{
     width: 100%;
     padding: 10px;
     grid-row-start: 1;
     grid-row-end: 2;
     grid-column-start: 2;
     grid-column-end: 3;
-}
+} */
 .loader {
     border: 8px solid #f3f3f3; /* Light grey */
     border-top: 8px solid #3498db; /* Blue */

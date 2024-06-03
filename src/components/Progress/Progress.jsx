@@ -80,24 +80,24 @@ const AttendanceSheet = () => {
     }, [accessToken, fromDate, toDate]);
 
     const netDurationBodyTemplate = (rowData) => {
-        return <span>{rowData.formattedNetDuration}</span>;
+        return <span className="text-center">{rowData.formattedNetDuration}</span>;
     };
     const checkInBodyTemplate = (rowData) => {
-        return <span>{rowData.formattedCheckIn}</span>;
+        return <span className="text-center">{rowData.formattedCheckIn}</span>;
     };
     const dateBodyTemplate = (rowData) => {
-        return <span>{rowData.formattedDate}</span>;
+        return <span className="text-center">{rowData.formattedDate}</span>;
     };
     const checkOutBodyTemplate = (rowData) => {
-        return <span>{rowData.formattedCheckOut}</span>;
+        return <span className="text-center">{rowData.formattedCheckOut}</span>;
     };
 
     const breakDurationBodyTemplate = (rowData) => {
-        return <span>{rowData.formattedBreakDuration}</span>;
+        return <span className="text-center">{rowData.formattedBreakDuration}</span>;
     };
 
     const totalDurationBodyTemplate = (rowData) => {
-        return <span>{rowData.formattedTotalDuration}</span>;
+        return <span className="text-center">{rowData.formattedTotalDuration}</span>;
     };
 
     useEffect(() => {
@@ -106,60 +106,85 @@ const AttendanceSheet = () => {
         console.log(res);
     }, []);
 
-    return (
-        <div className="sheet-container">
-            <h1 style={{ textAlign: "center" }}>Attendance Sheet</h1>
+    console.log(employeeData)
 
-            <div className="progress-mini-container" >
-            <div className="date-filters">
-                <label>
-                    From : &nbsp;
-                    <input
-                        type="date"
-                        value={fromDate}
-                        onChange={(e) => setFromDate(e.target.value)}
-                    />
-                </label>
-                <label>
-                    To :  &nbsp;
-                    <input
-                        type="date"
-                        value={toDate}
-                        onChange={(e) => setToDate(e.target.value)}
-                    />
-                </label>
+    return (
+        <div className="sheet-container w-full">
+            <h1 className="w-full bg-white text-sky-700 my-5 text-center rounded-lg p-2 font-bold text-xl">Attendance Sheet</h1>
+
+            <div className="bg-white p-5 rounded-lg" >
+            <div className="date-filters my-2 flex">
+                <div className="border-slate-400 border-2 w-1/6 rounded-lg mx-2">
+                    <label className="mx-2">
+                        From :
+                    </label>
+                    <input type="date" value={fromDate} onChange={(e) => setFromDate(e.target.value)} />
+                </div>
+                <div className="border-slate-400 border-2 w-1/6 rounded-lg mx-2">
+                    <label className="mx-2">
+                        To :
+                    </label>
+                    <input type="date" value={toDate} onChange={(e) => setToDate(e.target.value)} />
+                </div>
             </div>
                 {
                     loading ? <div className="loaderContainer"><div className="loader"></div></div> :
-                        <DataTable
-                            id="datatable-container-user"
-                            value={employeeData}
-                            tableStyle={{
-                                minWidth: "30rem",
-                                maxWidth: "100%",
-                                margin: "auto",
-                            }}
-                            paginator
-                            rows={30}
-                            sortField="_id"
-                            sortOrder={1}>
-                            <Column body={dateBodyTemplate} header="Date"></Column>
-                            <Column
-                                body={checkInBodyTemplate}
-                                header="Check In"></Column>
-                            <Column
-                                body={checkOutBodyTemplate}
-                                header="Check Out"></Column>
-                            <Column
-                                body={breakDurationBodyTemplate}
-                                header="Break Duration"></Column>
-                            <Column
-                                body={totalDurationBodyTemplate}
-                                header="Total Duration"></Column>
-                            <Column
-                                body={netDurationBodyTemplate}
-                                header="Net Duration"></Column>
-                        </DataTable>}
+                        // <DataTable id="datatable-container-user" value={employeeData} paginator rows={30} sortField="_id" sortOrder={1} className="" >
+                        //     <Column body={dateBodyTemplate} header="Date"></Column>
+                        //     <Column body={checkInBodyTemplate} header="Check In"></Column>
+                        //     <Column body={checkOutBodyTemplate} header="Check Out"></Column>
+                        //     <Column body={breakDurationBodyTemplate} header="Break Duration"></Column>
+                        //     <Column body={totalDurationBodyTemplate} header="Total Duration"></Column>
+                        //     <Column body={netDurationBodyTemplate} header="Net Duration"></Column>
+                        // </DataTable>
+                        <table className="min-w-full rounded">
+                        <thead className="bg-gray-200 border-b">
+                            <tr>
+                            <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                Date
+                            </th>
+                            <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                Check In
+                            </th>
+                            <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                Check Out
+                            </th>
+                            <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                Break Duration
+                            </th>
+                            <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                Total Duration
+                            </th>
+                            <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                Net Duration
+                            </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {employeeData.map((element)=>{
+                                return(
+                                <tr className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100" key={element.date}>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{element.date}</td>
+                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                    {element.checkIn}
+                                </td>
+                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                    {element.checkOut}
+                                </td>
+                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                    {element.breakDuration}
+                                </td>
+                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                    {element.totalDuration}
+                                </td>
+                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                    {element.netDuration}
+                                </td>
+                            </tr>
+                            )})}
+                        </tbody>
+                        </table>
+                    }
             </div>
         </div>
     );

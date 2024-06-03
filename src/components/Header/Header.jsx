@@ -24,58 +24,42 @@ const Header = () => {
 
     return (
         <>
-            <div className="header-container">
-                <div className="image-logo"  >
-
+            <div className="header-container bg-sky-700 m-5 p-5 rounded-xl flex flex-col items-center w-1/6">
+                <div className="image-logo h-20 w-20 bg-white rounded-full p-2"  >
                     <img src={logo}
                     alt="" />
                 </div>
-                <nav className="nav">
-                    <div className="nav-left">
-                        <NavLink className={({isActive}) =>isActive? "nav-link active-link": "nav-link"} to="/checkin">
-                            <span>
-                                <pre><GoCheckCircleFill /></pre>
-                                <pre>Check in!</pre>
+                <nav className="w-full">
+                    <div className="w-full">
+                        <NavLink className={({isActive})=>isActive?"w-full flex justify-center bg-white rounded-full text-sky-700 my-5":"w-full flex justify-center text-white my-5"} to="/checkin">
+                            <span className="flex items-center p-2">
+                                <pre className="mx-1 text-lg"><GoCheckCircleFill /></pre>
+                                <pre className="mx-1 text-lg">Check in!</pre>
                             </span>
                         </NavLink>
-                        <NavLink className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link" } to="/dashboard" end>
-                            <span>
-                                <pre><RiDashboardLine /></pre>
-                                <pre>Attendance</pre>
+                        <NavLink className={({isActive})=>isActive?"w-full flex justify-center bg-white rounded-full text-sky-700 my-5":"w-full flex justify-center text-white my-5"} to="/dashboard" end>
+                            <span className="flex items-center p-2">
+                                <pre className="mx-1 text-lg"><RiDashboardLine /></pre>
+                                <pre className="mx-1 text-lg">Attendance</pre>
                             </span>
                         </NavLink>
                         {isAdmin === "admin" && (
                             <NavLink
-                                className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link" } to="/dashboard/admin">
-                                <span>
-                                    <pre><RiAdminFill /></pre>
-                                    <pre>Admin</pre>
+                                className={({isActive})=>isActive?"w-full flex justify-center bg-white rounded-full text-sky-700 my-5":"w-full flex justify-center text-white my-5"} to="/dashboard/admin">
+                                <span className="flex items-center p-2">
+                                    <pre className="mx-1 text-lg"><RiAdminFill /></pre>
+                                    <pre className="mx-1 text-lg">Admin</pre>
                                 </span>
                             </NavLink>
                         )}
                     </div>
                     <div className="nav-right">
-                        {user?.isAuthenticated ? (
-                            <button
-                                id="logout"
-                                className="logout-button"
-                                onClick={handleLogout}>
-                                <span>
-                                    <FaPowerOff />
+                            <NavLink id="logout" className={({isActive})=>isActive?"w-full flex justify-center bg-white rounded-full text-sky-700 my-5":"w-full flex justify-center text-white my-5"} to="/login" onClick={handleLogout}>
+                                <span className="flex items-center p-2">
+                                    <span className="mx-1 text-lg">Log Out</span>
+                                    <span className="mx-1 text-lg"><HiOutlineLogout /></span>
                                 </span>
-                                <span>Logout</span>
-                            </button>
-                        ) : (
-                            <NavLink
-                                id="logout"
-                                className="logout-button"
-                                to="login">
-                                <span>
-                                    <HiOutlineLogout />
-                                </span>
-                                <span>Login</span>
                             </NavLink>
-                        )}
                     </div>
                 </nav>
             </div>

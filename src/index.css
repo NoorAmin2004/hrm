@@ -1,4 +1,27 @@
-:root {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+body{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  background-color:rgb(186 230 253);
+  color: black;
+}
+
+#root{
+  height: 100vh;
+}
+
+
+/* :root {
   --main-bg-color: rgba(204, 219, 253, 1);
   --main-card-color:  #010115;
   --font-color: rgba(37, 169, 224, 1);
@@ -7,21 +30,4 @@
 html {
   height: 100vh;
   font-size: 14px;
-}
-/* import {'primereact/resources/themes/saga-blue/theme.css';}
-import {'primereact/resources/primereact.min.css';}          // core css
-import 'primeicons/primeicons.css';                        // icons */
-*{
-  box-sizing: border-box;
-  margin: 0px;
-  padding: 0px;
-}
-body{
-
-margin: 0px;
-padding: 0px;
-box-sizing: border-box;
-background-color:rgba(204, 219, 253, 1);
-
-color: black;
-}
+}*/
