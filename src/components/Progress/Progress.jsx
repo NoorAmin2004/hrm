@@ -3,12 +3,12 @@ import "primereact/resources/themes/lara-light-cyan/theme.css";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import "./Progress.css";
-import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 
 import { IoMenuOutline } from "react-icons/io5";
 
 import { toggleSidebar } from '../../Redux/toggleSidebar';
+import axiosInstance from "../../auth/axiosInstance";
 
 
 const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
@@ -21,7 +21,6 @@ const AttendanceSheet = () => {
     const [toDate, setToDate] = useState("");
 
     const dispatch = useDispatch();
-    const isSidebarOpen = useSelector((state) => state.sidebar.isSidebarOpen);
 
     const handleToggleSidebar = () => {
         dispatch(toggleSidebar());
@@ -56,7 +55,7 @@ const AttendanceSheet = () => {
     useEffect(() => {
         const getEmployeeData = async () => {
             try {
-                const response = await axios({
+                const response = await axiosInstance({
                     url: `${apiUrl}/api/getUserAttendance`,
                     method: "get",
                     headers: {

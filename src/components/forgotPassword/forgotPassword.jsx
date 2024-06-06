@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axiosInstance from "../../auth/axiosInstance";
 
 export const ForgotPassword = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -9,7 +9,7 @@ export const ForgotPassword = () => {
 
   const onSubmit = async (data) => {
     try {
-        const response = await axios({
+        const response = await axiosInstance({
           method: "post",
           url: `${apiUrl}/api/reset-password`,
           data: { "email": data.email },

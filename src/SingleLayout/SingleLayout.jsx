@@ -1,28 +1,27 @@
 import "./SingleLayout.css";
 import PNG from "../assets/loginPNG.png";
 import { NavLink, Outlet } from "react-router-dom";
-import { useSelector,useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../Redux/userSlice";
 
 
 const SingleLayout = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const user = useSelector(state => state.user);
     
     const handleLogout = async () => {
-        dispatch(logout());
+        sessionStorage.removeItem('accessToken');
+        sessionStorage.removeItem('refreshToken');
+        localStorage.removeItem('refreshToken');
         navigate("/");
     };
 
+    const accessToken=sessionStorage.getItem("accessToken")
 
     return (
         <>
             <div className="dark-background"></div>
             <div className="dashboard-link" >
                 {
-                    user.isAuthenticated ?
+                    accessToken ?
                         <>
                             <NavLink to='/dashboard' replace >
                                 Dashboard

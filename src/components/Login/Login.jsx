@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./Login.css";
-import axios from "axios"; // Import Axios
+// import axios from "axios"; // Import Axios
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../../Redux/userSlice";
 import EyeOpen from "../../assets/eye-open.png";
 import EyeClosed from "../../assets/eye-close.png";
+import axiosInstance from "../../auth/axiosInstance";
 
 const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
 
@@ -28,10 +29,13 @@ const Login = () => {
     const onSubmit = async (data) => {
         const { email, password } = data;
         try {
-            const response = await axios.post(`${apiUrl}/api/login`, {
+            const response = await axiosInstance.post(`${apiUrl}/api/auth/login`, {
                 email,
                 password,
             });
+
+            sessionStorage.setItem("accessToken",response.data.accessToken)
+            sessionStorage.setItem("refreshToken",response.data.refreshToken)
 
             const userData = response.data;
             dispatch(login(userData));
@@ -42,14 +46,16 @@ const Login = () => {
             reset();
         } catch (error) {
 
-            const err =error.response.data.message
+            const err =error?.response?.data?.message||error
 
-            if(typeof err==="object"){
+            if(typeof err!=="object"){
                 err.forEach((e)=>{
                     toast.error(e.message,{position: "top-center"})
                 })
             }else if(typeof err==="string"){
                 toast.error(err,{position: "top-center"})
+            }else{
+                console.log(err)
             }
         }
     };

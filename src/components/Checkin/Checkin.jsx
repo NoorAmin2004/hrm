@@ -2,25 +2,19 @@ import { useState, useEffect } from "react";
 import "./Checkin.css";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
-import axios from "axios";
+import axiosInstance from "../../auth/axiosInstance";
 
 const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
 
 const Checkin = () => {
-    const user = useSelector((state) => state.user);
     const [status, setStatus] = useState("");
     const [loading, setloading] = useState(true)
-    const accessToken = user?.user?.accessToken || "";
 
     const handleCheck = async () => {
         try {
-            const response = await axios({
+            const response = await axiosInstance({
                 url: `${apiUrl}/api/check`,
                 method: "post",
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                },
             });
 
             console.log(response);
@@ -34,12 +28,9 @@ const Checkin = () => {
 
     const handleBreak = async () => {
         try {
-            const response = await axios({
+            const response = await axiosInstance({
                 url: `${apiUrl}/api/break`,
                 method: "post",
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                },
             });
             console.log(response);
             setStatus(response.data.status);
@@ -52,19 +43,16 @@ const Checkin = () => {
 
     useEffect(() => {
         const getStatus = async () => {
-            const response = await axios({
+            const response = await axiosInstance({
                 method: "get",
                 url: `${apiUrl}/api/getstatus`,
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                },
             });
             console.log(response);
             setStatus(response.data.status);
             setloading(false)
         };
         getStatus();
-    }, [accessToken]);
+    }, []);
 
     const CheckButtons = () => {
         return (<>

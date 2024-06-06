@@ -3,9 +3,9 @@ import "primereact/resources/themes/lara-light-cyan/theme.css";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import "./Attendance.css";
-import axios from "axios";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import axiosInstance from "../../auth/axiosInstance";
 
 const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
 
@@ -45,7 +45,7 @@ const Attendance = () => {
     useEffect(() => {
         const getEmployeeData = async () => {
             try {
-                const response = await axios({
+                const response = await axiosInstance({
                     url: `${apiUrl}/api/admin/getUserAttendance`,
                     method: "get",
                     headers: {

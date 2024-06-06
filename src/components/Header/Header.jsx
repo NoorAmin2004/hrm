@@ -1,6 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../../Redux/userSlice";
+import { useSelector} from "react-redux";
 import "./Header.css";
 
 import { GoCheckCircleFill } from "react-icons/go";
@@ -13,7 +12,6 @@ import logo from '../../assets/logo.svg'
 
 
 const Header = () => {
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector((state) => state.user);
     const isAdmin = user?.user?.user?.role;
@@ -23,7 +21,9 @@ const Header = () => {
 
 
     const handleLogout = async () => {
-        dispatch(logout());
+        sessionStorage.removeItem('accessToken');
+        sessionStorage.removeItem('refreshToken');
+        localStorage.removeItem('refreshToken');
         navigate("/");
     };
 

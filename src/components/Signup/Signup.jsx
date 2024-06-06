@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import './Signup.css';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import { useNavigate } from 'react-router-dom';
 import { MenuItem, Select, FormControl, InputLabel, TextField } from '@mui/material';
 import { useSelector } from 'react-redux';
+import axiosInstance from '../../auth/axiosInstance';
 // import env from '../../../env';
 
 const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
@@ -32,7 +32,7 @@ const Signup = () => {
             console.log(CNIC);
             console.log(DOB)
 
-            const response = await axios.post(`${apiUrl}/api/admin/register`, {
+            const response = await axiosInstance.post(`${apiUrl}/api/admin/register`, {
                 email,
                 password,
                 firstName,

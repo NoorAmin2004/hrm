@@ -3,10 +3,10 @@ import "./Employee.css";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { TextField } from '@mui/material';
+import axiosInstance from "../../auth/axiosInstance";
 
 
 const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
@@ -27,7 +27,7 @@ const Employee = () => {
     useEffect(() => {
         const getAllUser = async () => {
             try {
-                const response = await axios({
+                const response = await axiosInstance({
                     url: `${apiUrl}/api/admin/getAllUsers`,
                     method: "get",
                     headers: {
@@ -56,7 +56,7 @@ const Employee = () => {
     useEffect(() => {
         const getAllUser = async () => {
             try {
-                const response = await axios({
+                const response = await axiosInstance({
                     url: `${apiUrl}/api/admin/getAllUsers`,
                     method: "get",
                     headers: {
